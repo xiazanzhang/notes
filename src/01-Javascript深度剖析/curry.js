@@ -1,4 +1,6 @@
-//模拟实现lodash的curry方法
+/**
+ * 模拟实现lodash的curry函数
+ */
 
 const _ = require("lodash")
 
@@ -12,15 +14,24 @@ console.log(curried(1, 2, 3))
 console.log(curried(1, 2)(3))
 console.log(curried(1)(2)(3))
 
-const curry = (func) => {
-    return function fn(...args) {
-        if (args.length < func.length) {
-            return function () {
-                return fn(...args.concat(Array.from(arguments)))
-            }
+// function curry(func) {
+//     return function fn(...args) {
+//         if (args.length < func.length) {
+//             return function () {
+//                 return fn(...args.concat(Array.from(arguments)))
+//             }
+//         }
+//         return func(...args)
+//     }
+// }
+
+const curry = (func) => fn = (...args) => {
+    if (args.length < func.length) {
+        return function () {
+            return fn(...args.concat(Array.from(arguments)))
         }
-        return func(...args)
     }
+    return func(...args)
 }
 
 const curried2 = curry(add)
